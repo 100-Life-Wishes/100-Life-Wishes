@@ -14,12 +14,7 @@ namespace _100_Life_Wishes.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Кроко", Description="Пиа." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Прока", Description="Юнка." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Создать новую цель", Description="Нажми на кнопку ADD в правом верхнем углу" },
             };
         }
 
