@@ -17,6 +17,7 @@ namespace _100_Life_Wishes.ViewModels
         public ItemDetailViewModel()
         {
             DeleteCommand = new Command(OnDelete);
+            UpdateCommand = new Command(OnUpdate);
         }
         public string Text
         {
@@ -31,10 +32,23 @@ namespace _100_Life_Wishes.ViewModels
         }
 
         public Command DeleteCommand { get; }
+        public Command UpdateCommand { get; }
         private async void OnDelete()
         {
             // This will pop the current page off the navigation stack
             await DataStore.DeleteItemAsync(itemId);
+            await Shell.Current.GoToAsync("..");
+        }
+        private async void OnUpdate()
+        {
+            Item newItem = new Item()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Text = Text,
+                Description = Description
+            };
+            // This will pop the current page off the navigation stack
+            await DataStore.UpdateItemAsync(newItem);
             await Shell.Current.GoToAsync("..");
         }
 
