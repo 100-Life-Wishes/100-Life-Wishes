@@ -9,6 +9,7 @@
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" HorizontalOptions="End"></Button>
     </StackLayout>
     
 </ContentPage>

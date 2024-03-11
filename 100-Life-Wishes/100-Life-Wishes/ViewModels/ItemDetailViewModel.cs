@@ -14,6 +14,10 @@ namespace _100_Life_Wishes.ViewModels
         private string description;
         public string Id { get; set; }
 
+        public ItemDetailViewModel()
+        {
+            DeleteCommand = new Command(OnDelete);
+        }
         public string Text
         {
             get => text;
@@ -24,6 +28,14 @@ namespace _100_Life_Wishes.ViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public Command DeleteCommand { get; }
+        private async void OnDelete()
+        {
+            // This will pop the current page off the navigation stack
+            await DataStore.DeleteItemAsync(itemId);
+            await Shell.Current.GoToAsync("..");
         }
 
         public string ItemId
