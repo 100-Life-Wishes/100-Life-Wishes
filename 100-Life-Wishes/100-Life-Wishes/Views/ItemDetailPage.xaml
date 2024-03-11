@@ -9,6 +9,12 @@
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+
+        <StackLayout>
+            <Entry Text="{Binding Text, Mode=TwoWay}" />
+            <BoxView HeightRequest="20" />
+            <Entry Text="{Binding Description, Mode=TwoWay}" />
+        </StackLayout>        
         <Grid>
             <Button Text="Update" Command="{Binding UpdateCommand}" HorizontalOptions="Start"></Button>
             <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" HorizontalOptions="End"></Button>

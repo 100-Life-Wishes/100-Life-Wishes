@@ -41,14 +41,24 @@ namespace _100_Life_Wishes.ViewModels
         }
         private async void OnUpdate()
         {
-            Item newItem = new Item()
+            Item updatedItem = new Item()
             {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Id = this.Id, // Use the existing Id
+                Text = this.Text, // Use the Text property
+                Description = this.Description // Use the Description property
             };
+
+            try
+            {
+                await DataStore.UpdateItemAsync(updatedItem);
+                Debug.WriteLine("Item Updated Successfully");
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Update Item");
+            }
+
             // This will pop the current page off the navigation stack
-            await DataStore.UpdateItemAsync(newItem);
             await Shell.Current.GoToAsync("..");
         }
 
