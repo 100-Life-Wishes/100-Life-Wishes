@@ -14,7 +14,14 @@
             <Entry Text="{Binding Text, Mode=TwoWay}" />
             <BoxView HeightRequest="20" />
             <Entry Text="{Binding Description, Mode=TwoWay}" />
-        </StackLayout>        
+        </StackLayout>
+        <ListView x:Name="SubtasksListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid>
             <Button Text="Update" Command="{Binding UpdateCommand}" HorizontalOptions="Start"></Button>
             <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" HorizontalOptions="End"></Button>
