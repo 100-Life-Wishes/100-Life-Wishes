@@ -31,8 +31,9 @@
             <StackLayout Orientation="Vertical" Padding="30,0,30,0">
                 <Label Text="Что такое BucketList?" FontSize="Title"/>
                 <Label Text="BucketList – не просто список задач или «хотелок». По сути – это список желаний. Только действительно важных, стоящих, реализация которых делает нас лучше и счастливее." FontSize="16"/>
-                <Label Text="Начните же исполнять свои хотелки!" FontSize="16"></Label>
+                <Label Text="Начните же исполнять свои хотелки!" FontSize="16"/>
                 <Label FontSize="16" Padding="0,0,0,0"/>
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
             </StackLayout>
         </ScrollView>
         <ScrollView Grid.Row="2">
