@@ -11,7 +11,7 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Accent">#1231f1</Color>
+            <Color x:Key="Accent">#B5B8B1</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -20,25 +20,28 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+        <StackLayout BackgroundColor="{StaticResource Accent}">
+            <StackLayout>
+                <ContentView>
+                    <Image Source="https://tse3.mm.bing.net/th/id/OIG1.oPNgTdB81gNP5j99jHg.?pid=ImgGn" Aspect="AspectFill" HeightRequest="200"/>
                 </ContentView>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Заголовок" FontSize="Title"/>
-                <Label Text="Текст" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,0,0,0">
-
-                </Label>
-                <Button Margin="0,10,0,0" Text="Кнопка"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+            <StackLayout Orientation="Vertical" Padding="30,0,30,0">
+                <Label Text="Что такое BucketList?" FontSize="Title"/>
+                <Label Text="BucketList – не просто список задач или «хотелок». По сути – это список желаний. Только действительно важных, стоящих, реализация которых делает нас лучше и счастливее." FontSize="16"/>
+                <Label Text="Начните же исполнять свои хотелки!" FontSize="16"></Label>
+                <Label FontSize="16" Padding="0,0,0,0"/>
             </StackLayout>
         </ScrollView>
+        <ScrollView Grid.Row="2">
+            <Button Margin="0,10,0,15" Text="Перейти к задачам"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" 
+                Command="{Binding GoTo}"/>
+        </ScrollView>
     </Grid>
-
 </ContentPage>
