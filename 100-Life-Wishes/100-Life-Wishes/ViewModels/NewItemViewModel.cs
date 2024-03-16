@@ -1,6 +1,7 @@
 ﻿using _100_Life_Wishes.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -11,6 +12,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
+        public ObservableCollection<Subtask> subtasks;
 
         public NewItemViewModel()
         {
@@ -53,7 +55,8 @@ namespace _100_Life_Wishes.ViewModels
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Description = Description
+                Description = Description,
+                Subtasks = this.subtasks // Use the Subtasks property
             };
 
             await DataStore.AddItemAsync(newItem);
@@ -61,5 +64,6 @@ namespace _100_Life_Wishes.ViewModels
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
+
     }
 }

@@ -15,17 +15,17 @@
             <BoxView HeightRequest="20" />
             <Entry Text="{Binding Description, Mode=TwoWay}" />
         </StackLayout>
-        <ListView x:Name="SubtasksListView">
+        <ListView ItemsSource="{Binding Subtasks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
+                    <TextCell Text="{Binding Name}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid>
-            <Button Text="Update" Command="{Binding UpdateCommand}" HorizontalOptions="Start"></Button>
-            <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" HorizontalOptions="End"></Button>
-        </Grid>
+
+        <Button Text="Add subtask" Command="{Binding AddCommand}"></Button>
+        <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
+        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"></Button>
     </StackLayout>
     
 </ContentPage>

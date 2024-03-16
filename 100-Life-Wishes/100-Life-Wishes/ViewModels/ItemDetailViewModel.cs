@@ -1,5 +1,6 @@
 ﻿using _100_Life_Wishes.Models;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -12,12 +13,20 @@ namespace _100_Life_Wishes.ViewModels
         private string itemId;
         private string text;
         private string description;
+        private ObservableCollection<Subtask> subtasks;
+        public ObservableCollection<Subtask> Subtasks
+        {
+            get => subtasks;
+            set => SetProperty(ref subtasks, value);
+        }
         public string Id { get; set; }
 
         public ItemDetailViewModel()
         {
+            Subtasks = new ObservableCollection<Subtask>();
             DeleteCommand = new Command(OnDelete);
             UpdateCommand = new Command(OnUpdate);
+            AddCommand = new Command(OnAdd);
         }
         public string Text
         {
@@ -33,6 +42,7 @@ namespace _100_Life_Wishes.ViewModels
 
         public Command DeleteCommand { get; }
         public Command UpdateCommand { get; }
+        public Command AddCommand { get; }
         private async void OnDelete()
         {
             // This will pop the current page off the navigation stack
@@ -45,7 +55,8 @@ namespace _100_Life_Wishes.ViewModels
             {
                 Id = this.Id, // Use the existing Id
                 Text = this.Text, // Use the Text property
-                Description = this.Description // Use the Description property
+                Description = this.Description, // Use the Description property
+                Subtasks = this.Subtasks // Use the Subtasks property
             };
 
             try
@@ -83,10 +94,42 @@ namespace _100_Life_Wishes.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
+                Subtasks = item.Subtasks ?? new ObservableCollection<Subtask>();
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
+            }
+        }
+        private async void OnAdd()
+        {
+            // Create a new subtask
+            Subtask newSubtask = new Subtask()
+            {
+                Name = "New Subtask",
+            };
+
+            // Add the new subtask to the collection
+            Subtasks.Add(newSubtask);
+
+            // Update the item with the new subtask list
+            Item updatedItem = new Item()
+            {
+                Id = this.Id, // Use the existing Id
+                Text = this.Text, // Use the Text property
+                Description = this.Description, // Use the Description property
+                Subtasks = this.Subtasks // Use the updated Subtasks property
+            };
+
+            try
+            {
+                // Save the updated item to the data store
+                await DataStore.UpdateItemAsync(updatedItem);
+                Debug.WriteLine("Subtask Added Successfully");
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Add Subtask");
             }
         }
     }
