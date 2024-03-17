@@ -19,10 +19,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-        <Button Text="Add subtask" Command="{Binding AddCommand}"></Button>
-        <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
-        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"></Button>
+        <Grid HeightRequest="200">
+            <Button Text="Standard" Command="{Binding SetStandardImportance}" HorizontalOptions="Start" CornerRadius="50" ></Button>
+            <Button Text="Important" Command="{Binding SetHighImportance}" HorizontalOptions="End" CornerRadius="50" ></Button>
+        </Grid>
+        <Button Text="Add subtask" Command="{Binding AddCommand}" CornerRadius="50" ></Button>
+        <Button Text="Update" Command="{Binding UpdateCommand}" CornerRadius="50" ></Button>
+        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" CornerRadius="50" ></Button>
     </StackLayout>
     
 </ContentPage>

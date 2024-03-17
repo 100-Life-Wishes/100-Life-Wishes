@@ -12,7 +12,8 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
-        public ObservableCollection<Subtask> subtasks;
+        private ObservableCollection<Subtask> subtasks;
+        private Color Importance;
 
         public NewItemViewModel()
         {
@@ -40,6 +41,12 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public ObservableCollection<Subtask> Subtasks
+        {
+            get => subtasks;
+            set => SetProperty(ref subtasks, value);
+        }
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -56,7 +63,8 @@ namespace _100_Life_Wishes.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
                 Description = Description,
-                Subtasks = this.subtasks // Use the Subtasks property
+                Subtasks = Subtasks,
+                Importance = Importance
             };
 
             await DataStore.AddItemAsync(newItem);
