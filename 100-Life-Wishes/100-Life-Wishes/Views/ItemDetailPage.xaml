@@ -5,14 +5,11 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-
         <StackLayout>
+            <Label Text="Task:" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" />
             <BoxView HeightRequest="20" />
+            <Label Text="Description:" FontSize="Medium" />
             <Entry Text="{Binding Description, Mode=TwoWay}" />
         </StackLayout>
         <ListView ItemsSource="{Binding Subtasks}">
