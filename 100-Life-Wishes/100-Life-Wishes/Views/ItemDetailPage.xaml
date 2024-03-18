@@ -18,14 +18,20 @@
         <ListView ItemsSource="{Binding Subtasks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
+                    <ViewCell>
+                        <Entry Text="{Binding Name, Mode=TwoWay}" 
+                       FontSize="Small"                
+                       TextColor="Red"               
+                       HeightRequest="40" />
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
 
         <Button Text="Add subtask" Command="{Binding AddCommand}"></Button>
         <Button Text="Update" Command="{Binding UpdateCommand}"></Button>
         <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red"></Button>
     </StackLayout>
-    
+
 </ContentPage>
