@@ -13,8 +13,8 @@ namespace _100_Life_Wishes.ViewModels
         private string itemId;
         private string text;
         private string description;
-        private ObservableCollection<SubtaskViewModel> subtasks;
-        public ObservableCollection<SubtaskViewModel> Subtasks
+        private ObservableCollection<Subtask> subtasks;
+        public ObservableCollection<Subtask> Subtasks
         {
             get => subtasks;
             set => SetProperty(ref subtasks, value);
@@ -23,7 +23,7 @@ namespace _100_Life_Wishes.ViewModels
 
         public ItemDetailViewModel()
         {
-            Subtasks = new ObservableCollection<SubtaskViewModel>();
+            Subtasks = new ObservableCollection<Subtask>();
             DeleteCommand = new Command(OnDelete);
             UpdateCommand = new Command(OnUpdate);
             AddCommand = new Command(OnAdd);
@@ -94,7 +94,7 @@ namespace _100_Life_Wishes.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
-                Subtasks = item.Subtasks ?? new ObservableCollection<SubtaskViewModel>();
+                Subtasks = item.Subtasks ?? new ObservableCollection<Subtask>();
             }
             catch (Exception)
             {
@@ -103,11 +103,14 @@ namespace _100_Life_Wishes.ViewModels
         }
         private async void OnAdd()
         {
-            SubtaskViewModel newSubtaskViewModel = new SubtaskViewModel()
+            // Create a new subtask
+            Subtask newSubtask = new Subtask()
             {
                 Name = "New Subtask",
             };
-            Subtasks.Add(newSubtaskViewModel);
+
+            // Add the new subtask to the collection
+            Subtasks.Add(newSubtask);
 
             // Update the item with the new subtask list
             Item updatedItem = new Item()
