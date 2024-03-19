@@ -15,7 +15,12 @@
         <ListView ItemsSource="{Binding Subtasks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
+                    <ViewCell>
+                        <Entry Text="{Binding Name, Mode=TwoWay}" 
+                       FontSize="Small"                
+                       TextColor="Red"               
+                       HeightRequest="40" />
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -27,5 +32,5 @@
         <Button Text="Update" Command="{Binding UpdateCommand}" CornerRadius="50" ></Button>
         <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" CornerRadius="50" ></Button>
     </StackLayout>
-    
+
 </ContentPage>

@@ -13,14 +13,19 @@ namespace _100_Life_Wishes.ViewModels
         private string itemId;
         private string text;
         private string description;
-        private ObservableCollection<Subtask> subtasks;
+        private ObservableCollection<SubtaskViewModel> subtasks;
+        public ObservableCollection<SubtaskViewModel> Subtasks
+        {
+            get => subtasks;
+            set => SetProperty(ref subtasks, value);
+        }
         private Color importance;
 
         public string Id { get; set; }
 
         public ItemDetailViewModel()
         {
-            Subtasks = new ObservableCollection<Subtask>();
+            Subtasks = new ObservableCollection<SubtaskViewModel>();
             DeleteCommand = new Command(OnDelete);
             UpdateCommand = new Command(OnUpdate);
             AddCommand = new Command(OnAdd);
@@ -135,11 +140,11 @@ namespace _100_Life_Wishes.ViewModels
             {
                 // Save the updated item to the data store
                 await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Subtask Added Successfully");
+                Debug.WriteLine("Importance Added Successfully");
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Add Subtask");
+                Debug.WriteLine("Failed to Add Importance");
             }
         }
         private async void OnStandardImportance()
@@ -157,11 +162,11 @@ namespace _100_Life_Wishes.ViewModels
             {
                 // Save the updated item to the data store
                 await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Subtask Added Successfully");
+                Debug.WriteLine("Importance Added Successfully");
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Add Subtask");
+                Debug.WriteLine("Failed to Add Importance");
             }
         }
         public string ItemId
