@@ -41,7 +41,7 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public ObservableCollection<Subtask> Subtasks
+        public ObservableCollection<SubtaskViewModel> Subtasks
         {
             get => subtasks;
             set => SetProperty(ref subtasks, value);

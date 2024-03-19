@@ -44,11 +44,6 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public ObservableCollection<Subtask> Subtasks
-        {
-            get => subtasks;
-            set => SetProperty(ref subtasks, value);
-        }
 
         public Color Importance
         {
@@ -94,14 +89,11 @@ namespace _100_Life_Wishes.ViewModels
 
         private async void OnAdd()
         {
-            // Create a new subtask
-            Subtask newSubtask = new Subtask()
+            SubtaskViewModel newSubtaskViewModel = new SubtaskViewModel()
             {
                 Name = "New Subtask",
             };
-
-            // Add the new subtask to the collection
-            Subtasks.Add(newSubtask);
+            Subtasks.Add(newSubtaskViewModel);
 
             // Update the item with the new subtask list
             Item updatedItem = new Item()
@@ -190,8 +182,7 @@ namespace _100_Life_Wishes.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
-                Subtasks = item.Subtasks ?? new ObservableCollection<Subtask>();
-                Importance = item.Importance;
+                Subtasks = item.Subtasks ?? new ObservableCollection<SubtaskViewModel>();
             }
             catch (Exception)
             {
