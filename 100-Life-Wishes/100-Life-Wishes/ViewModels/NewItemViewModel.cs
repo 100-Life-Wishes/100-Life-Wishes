@@ -12,7 +12,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
-        public ObservableCollection<Subtask> subtasks;
+        public ObservableCollection<SubtaskViewModel> subtasks;
 
         public NewItemViewModel()
         {
