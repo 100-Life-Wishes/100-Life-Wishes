@@ -22,14 +22,15 @@
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Item" BackgroundColor="{Binding Importance}">
                         <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
+                            LineBreakMode="WordWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" 
+                            FontSize="20" 
+                            FontAttributes="Bold"
                             />
                         <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
+                            LineBreakMode="WordWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                            FontSize="16" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"

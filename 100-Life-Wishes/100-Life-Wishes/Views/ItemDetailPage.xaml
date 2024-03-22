@@ -5,32 +5,39 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <StackLayout>
+        <StackLayout >
             <Label Text="Task:" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" />
-            <BoxView HeightRequest="20" />
+            <Editor Text="{Binding Text, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
             <Label Text="Description:" FontSize="Medium" />
-            <Entry Text="{Binding Description, Mode=TwoWay}" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
         </StackLayout>
+        <Label Text="Subtasks:" FontSize="Medium" />
         <ListView ItemsSource="{Binding Subtasks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Entry Text="{Binding Name, Mode=TwoWay}" 
-                       FontSize="Small"                
-                       TextColor="Red"               
-                       HeightRequest="40" />
+                    <ViewCell >
+                        <StackLayout Orientation="Horizontal" BackgroundColor="{Binding SubtaskColor}">
+                            <Entry Text="{Binding Name, Mode=TwoWay}" 
+                                   FontSize="Small"                
+                                   TextColor="#000000"               
+                                   HeightRequest="40"
+                                   HorizontalOptions="StartAndExpand"
+                                   />
+                            <Button Text="🗑️" Command="{Binding DeleteSubtaskCommand}" CommandParameter="{Binding .}" VerticalOptions="End" HorizontalOptions="End"/>
+                            <Button Text="✅" Command="{Binding HighlightSubtaskCommand}" CommandParameter="{Binding .}" VerticalOptions="End" HorizontalOptions="End"/>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid HeightRequest="200">
-            <Button Text="Standard" Command="{Binding SetStandardImportance}" HorizontalOptions="Start" CornerRadius="50" ></Button>
-            <Button Text="Important" Command="{Binding SetHighImportance}" HorizontalOptions="End" CornerRadius="50" ></Button>
-        </Grid>
         <Button Text="Add subtask" Command="{Binding AddCommand}" CornerRadius="50" ></Button>
-        <Button Text="Update" Command="{Binding UpdateCommand}" CornerRadius="50" ></Button>
-        <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="Red" CornerRadius="50" ></Button>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" Margin="0">
+            <Button Text="Standard" Command="{Binding SetStandardImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
+            <Button Text="Important" Command="{Binding SetHighImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
+        </StackLayout>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"  Padding="0" Margin="0" >
+            <Button Text="Update" Command="{Binding UpdateCommand}" CornerRadius="50" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="LightCoral" CornerRadius="50" HorizontalOptions="FillAndExpand" ></Button>
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>

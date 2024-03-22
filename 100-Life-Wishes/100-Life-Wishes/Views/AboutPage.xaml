@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}">
             <StackLayout>
@@ -28,10 +29,10 @@
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,0,30,0">
-                <Label Text="Что такое BucketList?" FontSize="Title"/>
-                <Label Text="BucketList – не просто список задач или «хотелок». По сути – это список желаний. Только действительно важных, стоящих, реализация которых делает нас лучше и счастливее." FontSize="16"/>
-                <Label Text="Начните же исполнять свои хотелки!" FontSize="16"/>
+            <StackLayout Orientation="Vertical" Padding="15,0,15,0" >
+                <Label Text="Что такое BucketList?" FontSize="Title" FontAttributes="Bold"/>
+                <Label Text="BucketList – не просто список задач или «хотелок». По сути – это список желаний. Только действительно важных, стоящих, реализация которых делает нас лучше и счастливее." FontSize="18"/>
+                <Label Text="Начните же исполнять свои хотелки!" FontSize="20" />
                 <Label FontSize="16" Padding="0,0,0,0"/>
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
             </StackLayout></StackLayout>
@@ -40,8 +41,10 @@
             <Button Margin="0,10,0,15" Text="Перейти к задачам"
                 VerticalOptions="End"
                 HorizontalOptions="Center"
+                Scale="1.2"
                 BackgroundColor="{StaticResource Primary}"
                 TextColor="White" 
+                CornerRadius="50"
                 Command="{Binding GoTo}"/>
         </ScrollView>
     </Grid>

@@ -1,8 +1,10 @@
 ﻿using _100_Life_Wishes.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using _100_Life_Wishes.ViewModels;
 
 namespace _100_Life_Wishes.Services
 {
@@ -14,7 +16,14 @@ namespace _100_Life_Wishes.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Создать новую цель", Description="Нажми на кнопку ADD в правом верхнем углу" },
+                new Item { Id = Guid.NewGuid().ToString(), 
+                    Text = "Создать новую цель", 
+                    Description="Нажми на кнопку ADD в правом верхнем углу", 
+                    Subtasks = new ObservableCollection<SubtaskViewModel>()
+                    {
+                        new SubtaskViewModel{Name = "Напиши название цели"},
+                        new SubtaskViewModel{Name = "Напиши описание цели"}
+                    }},
             };
         }
 

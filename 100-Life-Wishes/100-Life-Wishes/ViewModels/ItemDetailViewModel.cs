@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace _100_Life_Wishes.ViewModels
@@ -14,14 +15,15 @@ namespace _100_Life_Wishes.ViewModels
         private string text;
         private string description;
         private ObservableCollection<SubtaskViewModel> subtasks;
+        private Color importance;
+
         public ObservableCollection<SubtaskViewModel> Subtasks
         {
             get => subtasks;
             set => SetProperty(ref subtasks, value);
         }
-        private Color importance;
 
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
         public ItemDetailViewModel()
         {
@@ -31,7 +33,26 @@ namespace _100_Life_Wishes.ViewModels
             AddCommand = new Command(OnAdd);
             SetHighImportance = new Command(OnHighImportance);
             SetStandardImportance = new Command(OnStandardImportance);
+            MessagingCenter.Subscribe<SubtaskViewModel, SubtaskViewModel>(this, "DeleteSubtask", (sender, arg) =>
+            {
+                Subtasks.Remove(arg);
+            });
+            MessagingCenter.Subscribe<SubtaskViewModel>(this, "HighlightSubtask", async (sender) =>
+            {
+                OnUpdate();
+            });
         }
+
+        public string ItemId
+        {
+            get => itemId;
+            set
+            {
+                itemId = value;
+                LoadItemId(value);
+            }
+        }
+
         public string Text
         {
             get => text;
@@ -56,6 +77,19 @@ namespace _100_Life_Wishes.ViewModels
         public Command AddCommand { get; }
         public Command SetHighImportance { get; }
         public Command SetStandardImportance { get; }
+
+        private Item UpdateItem()
+        {
+            return new Item
+            {
+                Id = Id,
+                Text = Text,
+                Description = Description,
+                Subtasks = Subtasks,
+                Importance = Importance
+            };
+        }
+
         private async void OnDelete()
         {
             // This will pop the current page off the navigation stack
@@ -64,114 +98,37 @@ namespace _100_Life_Wishes.ViewModels
         }
         private async void OnUpdate()
         {
-            Item updatedItem = new Item()
+            for (var i = Subtasks.Count - 1; i >= 0; i--)
             {
-                Id = this.Id, // Use the existing Id
-                Text = this.Text, // Use the Text property
-                Description = this.Description, // Use the Description property
-                Subtasks = this.Subtasks, // Use the Subtasks property
-                Importance = this.Importance
-            };
-
-            try
-            {
-                await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Item Updated Successfully");
+                if (string.IsNullOrEmpty(Subtasks[i].Name))
+                {
+                    Subtasks.RemoveAt(i);
+                }
             }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Update Item");
-            }
-
-            // This will pop the current page off the navigation stack
+            var updatedItem = UpdateItem();
+            await DataStore.UpdateItemAsync(updatedItem);
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void OnAdd()
+        private void OnAdd()
         {
-            SubtaskViewModel newSubtaskViewModel = new SubtaskViewModel()
+            var newSubtaskViewModel = new SubtaskViewModel()
             {
                 Name = "New Subtask",
+                SubtaskColor = Color.White
             };
             Subtasks.Add(newSubtaskViewModel);
-
-            // Update the item with the new subtask list
-            Item updatedItem = new Item()
-            {
-                Id = this.Id, // Use the existing Id
-                Text = this.Text, // Use the Text property
-                Description = this.Description, // Use the Description property
-                Subtasks = this.Subtasks, // Use the updated Subtasks property
-                Importance = this.Importance
-            };
-
-            try
-            {
-                // Save the updated item to the data store
-                await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Subtask Added Successfully");
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Add Subtask");
-            }
         }
 
-        private async void OnHighImportance()
+        private void OnHighImportance()
         {
-            Importance = Color.Red;
-            Item updatedItem = new Item()
-            {
-                Id = this.Id, // Use the existing Id
-                Text = this.Text, // Use the Text property
-                Description = this.Description, // Use the Description property
-                Subtasks = this.Subtasks, // Use the updated Subtasks property
-                Importance = this.Importance
-            };
-            try
-            {
-                // Save the updated item to the data store
-                await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Importance Added Successfully");
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Add Importance");
-            }
+            Importance = Color.LightCoral;
+            UpdateItem();
         }
-        private async void OnStandardImportance()
+        private void OnStandardImportance()
         {
             Importance = Color.White;
-            Item updatedItem = new Item()
-            {
-                Id = this.Id, // Use the existing Id
-                Text = this.Text, // Use the Text property
-                Description = this.Description, // Use the Description property
-                Subtasks = this.Subtasks, // Use the updated Subtasks property
-                Importance = this.Importance
-            };
-            try
-            {
-                // Save the updated item to the data store
-                await DataStore.UpdateItemAsync(updatedItem);
-                Debug.WriteLine("Importance Added Successfully");
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Add Importance");
-            }
-        }
-        public string ItemId
-        {
-            get
-            {
-                return itemId;
-            }
-            set
-            {
-                itemId = value;
-                LoadItemId(value);
-            }
+            UpdateItem();
         }
 
         public async void LoadItemId(string itemId)

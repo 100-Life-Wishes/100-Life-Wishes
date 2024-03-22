@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,14 +13,13 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
-        public ObservableCollection<SubtaskViewModel> subtasks;
-        private Color Importance;
+
 
         public NewItemViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
+            PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
@@ -41,11 +41,6 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public ObservableCollection<SubtaskViewModel> Subtasks
-        {
-            get => subtasks;
-            set => SetProperty(ref subtasks, value);
-        }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -63,8 +58,6 @@ namespace _100_Life_Wishes.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
                 Description = Description,
-                Subtasks = Subtasks,
-                Importance = Importance
             };
 
             await DataStore.AddItemAsync(newItem);
@@ -72,6 +65,5 @@ namespace _100_Life_Wishes.ViewModels
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
-
     }
 }
