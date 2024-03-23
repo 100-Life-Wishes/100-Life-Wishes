@@ -18,5 +18,17 @@ namespace _100_Life_Wishes.Views
             InitializeComponent();
             BindingContext = new ItemDetailViewModel();
         }
+        private void OnButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                var stackLayout = button.Parent as StackLayout;
+                if (stackLayout != null)
+                    if (stackLayout.BackgroundColor != Color.LightGreen)
+                        stackLayout.BackgroundColor = Color.LightGreen;
+                    else
+                        stackLayout.BackgroundColor = Color.White;
+            }
+        }
     }
 }

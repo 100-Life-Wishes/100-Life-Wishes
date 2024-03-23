@@ -39,7 +39,7 @@ namespace _100_Life_Wishes.ViewModels
             });
             MessagingCenter.Subscribe<SubtaskViewModel>(this, "HighlightSubtask", async (sender) =>
             {
-                OnUpdate();
+                UpdateItem();
             });
         }
 

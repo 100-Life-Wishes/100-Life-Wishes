@@ -24,7 +24,7 @@
                                    HorizontalOptions="StartAndExpand"
                                    />
                             <Button Text="🗑️" Command="{Binding DeleteSubtaskCommand}" CommandParameter="{Binding .}" VerticalOptions="End" HorizontalOptions="End"/>
-                            <Button Text="✅" Command="{Binding HighlightSubtaskCommand}" CommandParameter="{Binding .}" VerticalOptions="End" HorizontalOptions="End"/>
+                            <Button Text="✅" Clicked="OnButtonClicked" Command="{Binding HighlightSubtaskCommand}" CommandParameter="{Binding .}" VerticalOptions="End" HorizontalOptions="End"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
