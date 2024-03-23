@@ -37,7 +37,7 @@ namespace _100_Life_Wishes.ViewModels
             {
                 Subtasks.Remove(arg);
             });
-            MessagingCenter.Subscribe<SubtaskViewModel>(this, "HighlightSubtask", async (sender) =>
+            MessagingCenter.Subscribe<SubtaskViewModel>(this, "HighlightSubtask", (sender) =>
             {
                 UpdateItem();
             });
@@ -139,6 +139,7 @@ namespace _100_Life_Wishes.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
+                Importance = item.Importance;
                 Subtasks = item.Subtasks ?? new ObservableCollection<SubtaskViewModel>();
             }
             catch (Exception)

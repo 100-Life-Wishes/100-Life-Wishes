@@ -13,7 +13,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
-
+        private Color importance;
 
         public NewItemViewModel()
         {
@@ -41,6 +41,11 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public Color Importance
+        {
+            get => importance;
+            set => SetProperty(ref importance, value);
+        }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -58,6 +63,7 @@ namespace _100_Life_Wishes.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
                 Description = Description,
+                Importance = Importance
             };
 
             await DataStore.AddItemAsync(newItem);

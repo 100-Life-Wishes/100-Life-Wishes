@@ -22,16 +22,13 @@ namespace _100_Life_Wishes.ViewModels
             Title = "Tasks";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
             ItemTapped = new Command<Item>(OnItemSelected);
-
             AddItemCommand = new Command(OnAddItem);
         }
 
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
-
             try
             {
                 Items.Clear();

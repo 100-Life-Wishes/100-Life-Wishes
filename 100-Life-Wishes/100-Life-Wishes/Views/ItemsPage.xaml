@@ -20,25 +20,30 @@
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item" BackgroundColor="{Binding Importance}">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="WordWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="20" 
-                            FontAttributes="Bold"
-                            />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="WordWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="16" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    <Frame CornerRadius="10" Scale="0.95" x:DataType="model:Item" BorderColor="{Binding Importance}">
+                        <StackLayout Padding="10" >
+                            <Label Text="{Binding Text}" 
+                                LineBreakMode="WordWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="20" 
+                                FontAttributes="Bold"
+                                />
+                            <Label Text="{Binding Description}" 
+                                LineBreakMode="WordWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="16" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <ProgressBar Progress="{Binding Progress}" ProgressColor="LimeGreen" ScaleY="2"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

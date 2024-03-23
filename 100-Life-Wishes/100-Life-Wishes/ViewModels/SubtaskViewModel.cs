@@ -8,6 +8,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string name;
         private Color сolor = Color.White;
+        public bool IsCompleted;
         public Command DeleteSubtaskCommand { get; private set; }
         public Command HighlightSubtaskCommand { get; private set; }
         public string Name
@@ -31,7 +32,16 @@ namespace _100_Life_Wishes.ViewModels
         }
         private void HighlightSubtask(SubtaskViewModel subtask)
         {
-            сolor = сolor != Color.LightGreen ? Color.LightGreen : Color.White;
+            if (!IsCompleted)
+            {
+                сolor = Color.LightGreen;
+                IsCompleted = true;
+            }
+            else
+            {
+                IsCompleted = false;
+                сolor = Color.White;
+            }
             MessagingCenter.Send(this, "HighlightSubtask");
         }
     }
