@@ -16,7 +16,7 @@ namespace _100_Life_Wishes.Models
         public string Text { get; set; }
         public string Description { get; set; }
         public ObservableCollection<SubtaskViewModel> Subtasks { get; set; }
-        public Color Importance { get; set; }
+        public string Importance { get; set; }
         public double Progress
         {
             get

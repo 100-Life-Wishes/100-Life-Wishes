@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using _100_Life_Wishes.Models;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace _100_Life_Wishes.ViewModels
@@ -6,7 +7,7 @@ namespace _100_Life_Wishes.ViewModels
     public class SubtaskViewModel : BaseViewModel
     {
         private string name;
-        private Color color = Color.White;
+        private string color = "#FFFFFF";
         public bool IsCompleted { get; set; }
         public Command DeleteSubtaskCommand { get; private set; }
         public Command HighlightSubtaskCommand { get; private set; }
@@ -15,7 +16,7 @@ namespace _100_Life_Wishes.ViewModels
             get => name;
             set => SetProperty(ref name, value);
         }
-        public Color SubtaskColor
+        public string SubtaskColor
         {
             get => color;
             set => SetProperty(ref color, value);
@@ -34,13 +35,13 @@ namespace _100_Life_Wishes.ViewModels
         {
             if (!IsCompleted)
             {
-                color = Color.LightGreen;
+                color = "#90EE90";
                 IsCompleted = true;
             }
             else
             {
                 IsCompleted = false;
-                color = Color.White;
+                color = "#FFFFFF";
             }
         }
     }

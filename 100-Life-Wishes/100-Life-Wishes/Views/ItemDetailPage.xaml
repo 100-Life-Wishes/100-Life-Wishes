@@ -17,7 +17,7 @@
                 <DataTemplate >
                     <Frame Padding="0" Margin="0,5,0,5" CornerRadius="10" Scale="0.95" BorderColor="Gray">
                         <Grid Padding="7" 
-                              BackgroundColor="{Binding color}"  >
+                              BackgroundColor="{Binding SubtaskColor}"  >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>

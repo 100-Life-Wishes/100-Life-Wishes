@@ -2,8 +2,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace _100_Life_Wishes.ViewModels
@@ -15,7 +13,7 @@ namespace _100_Life_Wishes.ViewModels
         private string text;
         private string description;
         private ObservableCollection<SubtaskViewModel> subtasks;
-        private Color importance;
+        private string importance;
 
         public ObservableCollection<SubtaskViewModel> Subtasks
         {
@@ -62,7 +60,7 @@ namespace _100_Life_Wishes.ViewModels
         }
 
 
-        public Color Importance
+        public string Importance
         {
             get => importance;
             set => SetProperty(ref importance, value);
@@ -111,18 +109,18 @@ namespace _100_Life_Wishes.ViewModels
             var newSubtaskViewModel = new SubtaskViewModel()
             {
                 Name = "New Subtask",
-                SubtaskColor = Color.White
+                SubtaskColor = "#FFFFFF"
             };
             Subtasks.Add(newSubtaskViewModel);
         }
 
         private void OnHighImportance()
         {
-            Importance = Color.LightCoral;
+            Importance = "#F08080";
         }
         private void OnStandardImportance()
         {
-            Importance = Color.White;
+            Importance = "#FFFFFF";
         }
 
         public async void LoadItemId(string itemId)

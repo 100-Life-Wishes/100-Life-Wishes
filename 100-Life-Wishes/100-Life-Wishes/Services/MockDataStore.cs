@@ -14,7 +14,7 @@ namespace _100_Life_Wishes.Services
     public class MockDataStore : IDataStore<Item>
     {
         private List<Item> items;
-        string filePath;
+        readonly string filePath;
 
         public MockDataStore()
         {
@@ -64,7 +64,6 @@ namespace _100_Life_Wishes.Services
 
         public async Task<Item> GetItemAsync(string id)
         {
-            LoadData();
 
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }

@@ -13,7 +13,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         private string text;
         private string description;
-        private Color importance;
+        private string importance;
 
         public NewItemViewModel()
         {
@@ -41,7 +41,7 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public Color Importance
+        public string Importance
         {
             get => importance;
             set => SetProperty(ref importance, value);
