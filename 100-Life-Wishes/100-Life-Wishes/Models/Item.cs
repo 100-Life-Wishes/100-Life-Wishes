@@ -1,5 +1,7 @@
 ﻿using _100_Life_Wishes.ViewModels;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -19,7 +21,7 @@ namespace _100_Life_Wishes.Models
         {
             get
             {
-                if (Subtasks.Count == 0) return 0;
+                if (Subtasks == null || Subtasks.Count == 0) return 0;
                 return Subtasks.Count(st => st.IsCompleted) / (double)Subtasks.Count;
             }
         }

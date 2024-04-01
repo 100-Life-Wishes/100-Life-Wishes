@@ -12,12 +12,12 @@
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
         </StackLayout>
         <Label Text="Subtasks:" FontSize="Medium" />
-        <CollectionView ItemsSource="{Binding Subtasks}">
+        <CollectionView ItemsSource="{Binding Subtasks}" >
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate >
                     <Frame Padding="0" Margin="0,5,0,5" CornerRadius="10" Scale="0.95" BorderColor="Gray">
                         <Grid Padding="7" 
-                              BackgroundColor="{Binding SubtaskColor}"  >
+                              BackgroundColor="{Binding color}"  >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>

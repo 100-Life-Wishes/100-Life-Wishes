@@ -37,10 +37,6 @@ namespace _100_Life_Wishes.ViewModels
             {
                 Subtasks.Remove(arg);
             });
-            MessagingCenter.Subscribe<SubtaskViewModel>(this, "HighlightSubtask", (sender) =>
-            {
-                UpdateItem();
-            });
         }
 
         public string ItemId
@@ -123,12 +119,10 @@ namespace _100_Life_Wishes.ViewModels
         private void OnHighImportance()
         {
             Importance = Color.LightCoral;
-            UpdateItem();
         }
         private void OnStandardImportance()
         {
             Importance = Color.White;
-            UpdateItem();
         }
 
         public async void LoadItemId(string itemId)
