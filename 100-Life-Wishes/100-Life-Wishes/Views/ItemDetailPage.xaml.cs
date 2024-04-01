@@ -11,7 +11,6 @@ namespace _100_Life_Wishes.Views
     public partial class ItemDetailPage : ContentPage
     {
         public Item Item { get; set; }
-        public ObservableCollection<Subtask> Subtasks { get; set; }
 
         public ItemDetailPage()
         {

@@ -7,10 +7,6 @@ using Xamarin.Forms;
 
 namespace _100_Life_Wishes.Models
 {
-    public class Subtask
-    {
-        public string Name { get; set; }
-    }
 
     public class Item
     {
