@@ -32,6 +32,10 @@
                                 LineBreakMode="WordWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="16" />
+                            <Label Text="{Binding FormattedDeadline}" 
+                                   IsVisible="{Binding IsDeadlineVisible}"
+                                   TextColor="{Binding DeadlineColor}" 
+                                   FontSize="14" />
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     NumberOfTapsRequired="1"

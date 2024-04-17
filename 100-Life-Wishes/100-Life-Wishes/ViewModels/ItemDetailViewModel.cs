@@ -14,6 +14,7 @@ namespace _100_Life_Wishes.ViewModels
         private string description;
         private ObservableCollection<SubtaskViewModel> subtasks;
         private string importance;
+        private DateTime? deadline;
 
         public ObservableCollection<SubtaskViewModel> Subtasks
         {
@@ -23,6 +24,10 @@ namespace _100_Life_Wishes.ViewModels
 
         public string Id { get; private set; }
 
+        public bool IsDeadlinePickerVisible => Deadline.HasValue;
+        public string DeadlineButtonLabel => Deadline.HasValue ? "Remove Deadline" : "Add Deadline";
+
+
         public ItemDetailViewModel()
         {
             Subtasks = new ObservableCollection<SubtaskViewModel>();
@@ -31,6 +36,7 @@ namespace _100_Life_Wishes.ViewModels
             AddCommand = new Command(OnAdd);
             SetHighImportance = new Command(OnHighImportance);
             SetStandardImportance = new Command(OnStandardImportance);
+            ToggleDeadlineCommand = new Command(ExecuteToggleDeadline);
             MessagingCenter.Subscribe<SubtaskViewModel, SubtaskViewModel>(this, "DeleteSubtask", (sender, arg) =>
             {
                 Subtasks.Remove(arg);
@@ -66,11 +72,24 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref importance, value);
         }
 
+        public DateTime? Deadline
+        {
+            get => deadline;
+            set
+            {
+                SetProperty(ref deadline, value);
+                OnPropertyChanged(nameof(DeadlineButtonLabel));
+            }
+        }
+
+
+        // Commands
         public Command DeleteCommand { get; }
         public Command UpdateCommand { get; }
         public Command AddCommand { get; }
         public Command SetHighImportance { get; }
         public Command SetStandardImportance { get; }
+        public Command ToggleDeadlineCommand { get; }
 
         private Item UpdateItem()
         {
@@ -80,8 +99,22 @@ namespace _100_Life_Wishes.ViewModels
                 Text = Text,
                 Description = Description,
                 Subtasks = Subtasks,
-                Importance = Importance
+                Importance = Importance,
+                Deadline = Deadline
             };
+        }
+
+        private void ExecuteToggleDeadline()
+        {
+            if (Deadline.HasValue)
+            {
+                Deadline = null;
+            }
+            else
+            {
+                Deadline = DateTime.Now.AddDays(7);
+            }
+            OnPropertyChanged(nameof(IsDeadlinePickerVisible));
         }
 
         private async void OnDelete()
@@ -133,6 +166,9 @@ namespace _100_Life_Wishes.ViewModels
                 Description = item.Description;
                 Importance = item.Importance;
                 Subtasks = item.Subtasks ?? new ObservableCollection<SubtaskViewModel>();
+
+                Deadline = item.Deadline;
+                OnPropertyChanged(nameof(IsDeadlinePickerVisible));
             }
             catch (Exception)
             {

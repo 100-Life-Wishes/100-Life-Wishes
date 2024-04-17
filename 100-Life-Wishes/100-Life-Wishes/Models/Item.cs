@@ -17,6 +17,13 @@ namespace _100_Life_Wishes.Models
         public string Description { get; set; }
         public ObservableCollection<SubtaskViewModel> Subtasks { get; set; }
         public string Importance { get; set; }
+        public DateTime? Deadline { get; set; }
+
+        public string FormattedDeadline => Deadline.HasValue ? $"Deadline: {Deadline:dd/MM/yyyy}" : string.Empty;
+        public bool IsDeadlineVisible => Deadline.HasValue;
+        public Color DeadlineColor => (Deadline.HasValue && Deadline < DateTime.Now) ? Color.Red : Color.Blue;
+
+
         public double Progress
         {
             get

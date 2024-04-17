@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_100_Life_Wishes.Views.ItemDetailPage"
-             Title="{Binding Title}">
+            Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
         <StackLayout >
@@ -10,6 +10,12 @@
             <Editor Text="{Binding Text, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
             <Label Text="Description:" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
+            <StackLayout IsVisible="{Binding IsDeadlinePickerVisible}">
+                <Label Text="Deadline:" FontSize="Medium" />
+                <DatePicker Date="{Binding Deadline, Mode=TwoWay}"
+                Format="dd.MM.yyyy"
+                HorizontalOptions="FillAndExpand" />
+            </StackLayout>
         </StackLayout>
         <Label Text="Subtasks:" FontSize="Medium" />
         <CollectionView ItemsSource="{Binding Subtasks}" >
@@ -57,7 +63,16 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Add subtask" Command="{Binding AddCommand}" CornerRadius="50" ></Button>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" Margin="0">
+            <Button Text="Add subtask" 
+                Command="{Binding AddCommand}" 
+                CornerRadius="50"
+                HorizontalOptions="FillAndExpand" />
+            <Button Text="{Binding DeadlineButtonLabel}" 
+                Command="{Binding ToggleDeadlineCommand}" 
+                CornerRadius="50"
+                HorizontalOptions="FillAndExpand" />
+        </StackLayout>
         <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" Margin="0">
             <Button Text="Standard" Command="{Binding SetStandardImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
             <Button Text="Important" Command="{Binding SetHighImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
