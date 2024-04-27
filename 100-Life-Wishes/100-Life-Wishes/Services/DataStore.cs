@@ -11,12 +11,12 @@ using System.Diagnostics;
 
 namespace _100_Life_Wishes.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class DataStore : IDataStore<Item>
     {
         private List<Item> items;
         readonly string filePath;
 
-        public MockDataStore()
+        public DataStore()
         {
             items = new List<Item>() ;
             filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "data.json");

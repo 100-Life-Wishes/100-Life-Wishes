@@ -8,6 +8,7 @@
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="https://icon-icons.com/icons2/2719/PNG/512/sort_ascending_icon_174933.png" Command="{Binding SortItemsCommand}" />
         <ToolbarItem IconImageSource="https://icon-icons.com/icons2/4053/PNG/512/archive_add_icon_257097.png" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
     <!--
