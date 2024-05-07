@@ -6,19 +6,19 @@
 
     <StackLayout Spacing="20" Padding="15">
         <StackLayout >
-            <Label Text="Task:" FontSize="Medium" />
+            <Label Text="Название:" FontSize="Medium" />
             <Editor Text="{Binding Text, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
-            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="Описание:" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" MaxLength="100"/>
             <StackLayout IsVisible="{Binding IsDeadlinePickerVisible}">
-                <Label Text="Deadline:" FontSize="Medium" />
+                <Label Text="Сроки:" FontSize="Medium" />
                 <DatePicker Date="{Binding Deadline, Mode=TwoWay}"
                 Format="dd.MM.yyyy"
                 HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </StackLayout>
-        <Label Text="Subtasks:" FontSize="Medium" />
-        <CollectionView ItemsSource="{Binding Subtasks}" >
+        <Label Text="Подзадачи:" FontSize="Medium" />
+        <CollectionView ItemsSource="{Binding Subtasks}" VerticalOptions="StartAndExpand" >
             <CollectionView.ItemTemplate>
                 <DataTemplate >
                     <Frame Padding="0" Margin="0,5,0,5" CornerRadius="10" Scale="0.95" BorderColor="Gray">
@@ -63,23 +63,29 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" Margin="0">
-            <Button Text="Add subtask" 
-                Command="{Binding AddCommand}" 
-                CornerRadius="50"
-                HorizontalOptions="FillAndExpand" />
-            <Button Text="{Binding DeadlineButtonLabel}" 
-                Command="{Binding ToggleDeadlineCommand}" 
-                CornerRadius="50"
-                HorizontalOptions="FillAndExpand" />
-        </StackLayout>
-        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="0" Margin="0">
-            <Button Text="Standard" Command="{Binding SetStandardImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
-            <Button Text="Important" Command="{Binding SetHighImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" ></Button>
-        </StackLayout>
-        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"  Padding="0" Margin="0" >
-            <Button Text="Update" Command="{Binding UpdateCommand}" CornerRadius="50" HorizontalOptions="FillAndExpand"></Button>
-            <Button Text="Delete" Command="{Binding DeleteCommand}" BackgroundColor="LightCoral" CornerRadius="50" HorizontalOptions="FillAndExpand" ></Button>
-        </StackLayout>
+        <Grid VerticalOptions="EndAndExpand" HeightRequest="180">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Первый ряд кнопок -->
+            <Button Grid.Row="0" Grid.Column="0" Text="Добавить подзадачу" Command="{Binding AddCommand}" CornerRadius="50" HorizontalOptions="FillAndExpand" />
+            <Button Grid.Row="0" Grid.Column="1" Text="{Binding DeadlineButtonLabel}" Command="{Binding ToggleDeadlineCommand}" CornerRadius="50" HorizontalOptions="FillAndExpand" />
+
+            <!-- Второй ряд кнопок -->
+            <Button Grid.Row="1" Grid.Column="0" Text="Обычно" Command="{Binding SetStandardImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" />
+            <Button Grid.Row="1" Grid.Column="1" Text="Важно" Command="{Binding SetHighImportance}" HorizontalOptions="FillAndExpand" CornerRadius="50" />
+
+            <!-- Третий ряд кнопок -->
+            <Button Grid.Row="2" Grid.Column="0" Text="Сохранить" Command="{Binding UpdateCommand}" CornerRadius="50" HorizontalOptions="FillAndExpand" />
+            <Button Grid.Row="2" Grid.Column="1" Text="Удалить" Command="{Binding DeleteCommand}" BackgroundColor="LightCoral" CornerRadius="50" HorizontalOptions="FillAndExpand" />
+        </Grid>
+
     </StackLayout>
 </ContentPage>

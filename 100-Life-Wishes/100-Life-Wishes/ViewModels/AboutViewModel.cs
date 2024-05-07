@@ -9,7 +9,7 @@ namespace _100_Life_Wishes.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "О приложении";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
             GoTo = new Command(async () => await Shell.Current.GoToAsync($"//{nameof(ItemsPage)}"));
         }

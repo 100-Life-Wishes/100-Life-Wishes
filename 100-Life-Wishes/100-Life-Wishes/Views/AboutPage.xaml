@@ -37,15 +37,9 @@
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
             </StackLayout></StackLayout>
         </ScrollView>
-        <ScrollView Grid.Row="2">
-            <Button Margin="0,10,0,15" Text="Перейти к задачам"
-                VerticalOptions="End"
-                HorizontalOptions="Center"
-                Scale="1.2"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White" 
-                CornerRadius="50"
-                Command="{Binding GoTo}"/>
-        </ScrollView>
+        <StackLayout Grid.Row="2" VerticalOptions="End">
+            <Label Grid.Row="2" Text="Версия: 1.5 от 07.05.2024." HorizontalOptions="Center" VerticalOptions="End"/>
+            <Label Grid.Row="2" Text="©2024 Команда Саша." HorizontalOptions="Center" VerticalOptions="End"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

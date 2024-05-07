@@ -9,14 +9,14 @@
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="15">
             <StackLayout >
-                <Label Text="Task" FontSize="Medium" />
+                <Label Text="Название" FontSize="Medium" />
                 <Editor Text="{Binding Text, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" />
-                <Label Text="Description" FontSize="Medium" />
+                <Label Text="Описание" FontSize="Medium" />
                 <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0"/>
             </StackLayout >
             <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"  Spacing="5"  >
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" CornerRadius="50"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="Aqua" HorizontalOptions="FillAndExpand" CornerRadius="50"></Button>
+                <Button Text="Отмена" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" CornerRadius="50"></Button>
+                <Button Text="Сохранить" Command="{Binding SaveCommand}" BackgroundColor="Aqua" HorizontalOptions="FillAndExpand" CornerRadius="50"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

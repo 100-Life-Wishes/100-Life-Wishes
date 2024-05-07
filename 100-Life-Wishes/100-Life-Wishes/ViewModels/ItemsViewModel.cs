@@ -22,7 +22,7 @@ namespace _100_Life_Wishes.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Tasks";
+            Title = "Задачи";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<Item>(OnItemSelected);
@@ -70,17 +70,17 @@ namespace _100_Life_Wishes.ViewModels
 
         private async void OnSortItems()
         {
-            string action = await Application.Current.MainPage.DisplayActionSheet("Сортировать по:", "Отмена", null, "Progress", "Text", "Importance");
+            string action = await Application.Current.MainPage.DisplayActionSheet("Сортировать по:", "Отмена", null, "Прогресс", "Название", "Приоритет");
             var newItems = new ObservableCollection<Item>();
             switch (action)
             {
-                case "Progress":
+                case "Прогресс":
                     newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Progress).Reverse());
                     break;
-                case "Text":
+                case "Название":
                     newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Text));
                     break;
-                case "Importance":
+                case "Приоритет":
                     newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Importance).Reverse());
                     break;
                 default:

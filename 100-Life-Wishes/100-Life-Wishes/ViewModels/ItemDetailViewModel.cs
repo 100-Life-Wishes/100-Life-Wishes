@@ -25,7 +25,7 @@ namespace _100_Life_Wishes.ViewModels
         public string Id { get; private set; }
 
         public bool IsDeadlinePickerVisible => Deadline.HasValue;
-        public string DeadlineButtonLabel => Deadline.HasValue ? "Remove Deadline" : "Add Deadline";
+        public string DeadlineButtonLabel => Deadline.HasValue ? "Убрать сроки" : "Добавить сроки";
 
 
         public ItemDetailViewModel()
@@ -141,7 +141,7 @@ namespace _100_Life_Wishes.ViewModels
         {
             var newSubtaskViewModel = new SubtaskViewModel()
             {
-                Name = "New Subtask",
+                Name = "Новая подзадача",
                 SubtaskColor = "#FFFFFF"
             };
             Subtasks.Add(newSubtaskViewModel);
