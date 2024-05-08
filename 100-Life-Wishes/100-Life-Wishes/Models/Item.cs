@@ -15,7 +15,7 @@ namespace _100_Life_Wishes.Models
         public string Id { get; set; }
         public string Text { get; set; }
         public string Description { get; set; }
-        public ObservableCollection<SubtaskViewModel> Subtasks { get; set; }
+        public ObservableCollection<Subtask> Subtasks { get; set; }
         public string Importance { get; set; }
         public DateTime? Deadline { get; set; }
 

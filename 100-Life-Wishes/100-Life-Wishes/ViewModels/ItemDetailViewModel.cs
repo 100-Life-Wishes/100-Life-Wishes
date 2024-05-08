@@ -12,11 +12,11 @@ namespace _100_Life_Wishes.ViewModels
         private string itemId;
         private string text;
         private string description;
-        private ObservableCollection<SubtaskViewModel> subtasks;
+        private ObservableCollection<Subtask> subtasks;
         private string importance;
         private DateTime? deadline;
 
-        public ObservableCollection<SubtaskViewModel> Subtasks
+        public ObservableCollection<Subtask> Subtasks
         {
             get => subtasks;
             set => SetProperty(ref subtasks, value);
@@ -30,14 +30,14 @@ namespace _100_Life_Wishes.ViewModels
 
         public ItemDetailViewModel()
         {
-            Subtasks = new ObservableCollection<SubtaskViewModel>();
+            Subtasks = new ObservableCollection<Subtask>();
             DeleteCommand = new Command(OnDelete);
             UpdateCommand = new Command(OnUpdate);
             AddCommand = new Command(OnAdd);
             SetHighImportance = new Command(OnHighImportance);
             SetStandardImportance = new Command(OnStandardImportance);
             ToggleDeadlineCommand = new Command(ExecuteToggleDeadline);
-            MessagingCenter.Subscribe<SubtaskViewModel, SubtaskViewModel>(this, "DeleteSubtask", (sender, arg) =>
+            MessagingCenter.Subscribe<Subtask, Subtask>(this, "DeleteSubtask", (sender, arg) =>
             {
                 Subtasks.Remove(arg);
             });
@@ -139,7 +139,7 @@ namespace _100_Life_Wishes.ViewModels
 
         private void OnAdd()
         {
-            var newSubtaskViewModel = new SubtaskViewModel()
+            var newSubtaskViewModel = new Subtask()
             {
                 Name = "Новая подзадача",
                 SubtaskColor = "#FFFFFF"
@@ -165,7 +165,7 @@ namespace _100_Life_Wishes.ViewModels
                 Text = item.Text;
                 Description = item.Description;
                 Importance = item.Importance;
-                Subtasks = item.Subtasks ?? new ObservableCollection<SubtaskViewModel>();
+                Subtasks = item.Subtasks ?? new ObservableCollection<Subtask>();
 
                 Deadline = item.Deadline;
                 OnPropertyChanged(nameof(IsDeadlinePickerVisible));

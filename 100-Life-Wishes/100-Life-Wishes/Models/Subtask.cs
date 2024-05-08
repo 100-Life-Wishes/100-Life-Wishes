@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace _100_Life_Wishes.ViewModels
 {
-    public class SubtaskViewModel : BaseViewModel
+    public class Subtask : BaseViewModel
     {
         private string name;
         private string color = "#FFFFFF";
@@ -22,16 +22,16 @@ namespace _100_Life_Wishes.ViewModels
             set => SetProperty(ref color, value);
         }
 
-        public SubtaskViewModel()
+        public Subtask()
         {
-            DeleteSubtaskCommand = new Command<SubtaskViewModel>(RemoveSubtask);
-            HighlightSubtaskCommand = new Command<SubtaskViewModel>(HighlightSubtask);
+            DeleteSubtaskCommand = new Command<Subtask>(RemoveSubtask);
+            HighlightSubtaskCommand = new Command<Subtask>(HighlightSubtask);
         }
-        private void RemoveSubtask(SubtaskViewModel subtask)
+        private void RemoveSubtask(Subtask subtask)
         {
             MessagingCenter.Send(this, "DeleteSubtask", subtask);
         }
-        private void HighlightSubtask(SubtaskViewModel subtask)
+        private void HighlightSubtask(Subtask subtask)
         {
             if (!IsCompleted)
             {
