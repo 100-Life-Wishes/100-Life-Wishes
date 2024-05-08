@@ -11,14 +11,14 @@ using System.Diagnostics;
 
 namespace _100_Life_Wishes.Services
 {
-    public class DataStore : IDataStore<Item>
+    public class DataStore : IDataStore<TaskItem>
     {
-        private List<Item> items;
+        private List<TaskItem> items;
         readonly string filePath;
 
         public DataStore()
         {
-            items = new List<Item>() ;
+            items = new List<TaskItem>() ;
             filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "data.json");
         }
         private void LoadData()
@@ -26,7 +26,7 @@ namespace _100_Life_Wishes.Services
             if (File.Exists(filePath))
             {
                 var jsonData = File.ReadAllText(filePath);
-                items = JsonConvert.DeserializeObject<List<Item>>(jsonData);
+                items = JsonConvert.DeserializeObject<List<TaskItem>>(jsonData);
             }
         }
 
@@ -36,16 +36,16 @@ namespace _100_Life_Wishes.Services
             File.WriteAllText(filePath, jsonData);
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(TaskItem item)
         {
             items.Add(item);
             SaveData();
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(TaskItem item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where((TaskItem arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
             SaveData();
@@ -55,20 +55,20 @@ namespace _100_Life_Wishes.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((TaskItem arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
             SaveData();
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<TaskItem> GetItemAsync(string id)
         {
 
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<TaskItem>> GetItemsAsync(bool forceRefresh = false)
         {
             LoadData();
 

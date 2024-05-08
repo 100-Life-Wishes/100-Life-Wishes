@@ -12,20 +12,20 @@ namespace _100_Life_Wishes.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private TaskItem _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<TaskItem> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command SortItemsCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<TaskItem> ItemTapped { get; }
 
         public ItemsViewModel()
         {
             Title = "Задачи";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<TaskItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<TaskItem>(OnItemSelected);
             AddItemCommand = new Command(OnAddItem);
             SortItemsCommand = new Command(OnSortItems);
         }
@@ -58,7 +58,7 @@ namespace _100_Life_Wishes.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public TaskItem SelectedItem
         {
             get => _selectedItem;
             set
@@ -71,17 +71,17 @@ namespace _100_Life_Wishes.ViewModels
         private async void OnSortItems()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Сортировать по:", "Отмена", null, "Прогресс", "Название", "Приоритет");
-            var newItems = new ObservableCollection<Item>();
+            var newItems = new ObservableCollection<TaskItem>();
             switch (action)
             {
                 case "Прогресс":
-                    newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Progress).Reverse());
+                    newItems = new ObservableCollection<TaskItem>(Items.OrderBy(x => x.Progress).Reverse());
                     break;
                 case "Название":
-                    newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Text));
+                    newItems = new ObservableCollection<TaskItem>(Items.OrderBy(x => x.Text));
                     break;
                 case "Приоритет":
-                    newItems = new ObservableCollection<Item>(Items.OrderBy(x => x.Importance).Reverse());
+                    newItems = new ObservableCollection<TaskItem>(Items.OrderBy(x => x.Importance).Reverse());
                     break;
                 default:
                     newItems = Items;
@@ -99,7 +99,7 @@ namespace _100_Life_Wishes.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(TaskItem item)
         {
             if (item == null)
                 return;

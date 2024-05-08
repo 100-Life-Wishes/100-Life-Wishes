@@ -10,7 +10,7 @@ using Xamarin.Forms;
 namespace _100_Life_Wishes.Models
 {
 
-    public class Item
+    public class TaskItem
     {
         public string Id { get; set; }
         public string Text { get; set; }

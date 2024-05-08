@@ -91,9 +91,9 @@ namespace _100_Life_Wishes.ViewModels
         public Command SetStandardImportance { get; }
         public Command ToggleDeadlineCommand { get; }
 
-        private Item UpdateItem()
+        private TaskItem UpdateItem()
         {
-            return new Item
+            return new TaskItem
             {
                 Id = Id,
                 Text = Text,
